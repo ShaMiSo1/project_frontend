@@ -16,10 +16,12 @@ const Register = () => {
         email,
         password,
       });
-      // 성공하면 /register-success로 이동하며 메시지 전달
+      // 성공 시 (2xx)
+      // → response.data.message 에 성공 메시지가 들어있음
       navigate("/register-success", { state: { message: response.data.message } });
     } catch (error) {
-      // 실패하면 /register-failure로 이동하며 에러 메시지 전달
+      // 실패 시 (4xx)
+      // → error.response.data.error 에 실패 메시지가 들어있음
       const errMsg = error.response?.data?.error || "회원가입 실패";
       navigate("/register-failure", { state: { message: errMsg } });
     }
