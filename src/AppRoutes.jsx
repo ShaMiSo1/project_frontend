@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import RegisterSuccess from "./pages/RegisterSuccess";
 import RegisterFailure from "./pages/RegisterFailure";
+import MyFridge from "./pages/MyFridge";
 
 const AppRoutes = () => {
   const { isAuthenticated } = useAuth();
@@ -35,6 +36,7 @@ const AppRoutes = () => {
       />
       <Route path="/register-success" element={<RegisterSuccess />} />
       <Route path="/register-failure" element={<RegisterFailure />} />
+      <Route path="/myfridge" element={<MyFridge />} />
 
       {/* 기타 없는 페이지 → / 로 */}
       <Route path="*" element={<Navigate to="/" />} />

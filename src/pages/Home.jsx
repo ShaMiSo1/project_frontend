@@ -27,6 +27,16 @@ const Home = () => {
     }
   }, [isAuthenticated]);
 
+  // 냉장고 채우기 버튼 클릭 시 동작
+  const handleFillFridge = () => {
+    navigate("/myfridge"); // 냉장고 채우기 페이지로 이동
+  };
+
+  // 요리 추천받기 버튼 클릭 시 동작
+  const handleGetRecommendation = () => {
+    navigate("/recommendation"); // 요리 추천받기 페이지로 이동
+  };
+
   return (
     <div>
       <h1>홈 화면</h1>
@@ -35,6 +45,8 @@ const Home = () => {
           <p>사용자 이름: {user.username}</p>
           {/* 필요하다면 권한이나 이메일 등 더 출력 */}
           <button onClick={logout}>로그아웃</button>
+          <button onClick={handleFillFridge}>냉장고 채우기</button>
+          <button onClick={handleGetRecommendation}>요리 추천받기</button>
         </>
       ) : (
         <p>로그인 정보를 불러오는 중...</p>
