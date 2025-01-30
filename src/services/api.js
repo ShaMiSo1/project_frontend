@@ -1,3 +1,4 @@
+// src/services/api.js
 import axios from "axios";
 
 const api = axios.create({
@@ -5,6 +6,7 @@ const api = axios.create({
   withCredentials: true,
 });
 
+// 요청 시 JWT 토큰 자동 추가
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
@@ -16,6 +18,7 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
+// 응답 시 401 에러 처리 (로그인 페이지로 이동)
 api.interceptors.response.use(
   (response) => response,
   (error) => {

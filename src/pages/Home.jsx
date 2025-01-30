@@ -1,3 +1,4 @@
+// src/pages/Home.jsx
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
@@ -32,9 +33,18 @@ const Home = () => {
       <h1>홈 화면</h1>
       {user ? (
         <>
-          <p>사용자 이름: {user.username}</p>
-          {/* 필요하다면 권한이나 이메일 등 더 출력 */}
-          <button onClick={logout}>로그아웃</button>
+          {/* 사용자 이름 또는 이메일 표시 */}
+          <p>사용자 이름: {user.username || user.email}</p>
+
+          {/* 냉장고로 이동 버튼 */}
+          <button onClick={() => navigate("/fridge")}>
+            내 냉장고로 가기
+          </button>
+
+          {/* 로그아웃 버튼 */}
+          <button onClick={logout}>
+            로그아웃
+          </button>
         </>
       ) : (
         <p>로그인 정보를 불러오는 중...</p>

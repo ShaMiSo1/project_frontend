@@ -1,3 +1,4 @@
+// src/AppRoutes.jsx
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuth } from "./hooks/useAuth.jsx";
@@ -7,6 +8,9 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import RegisterSuccess from "./pages/RegisterSuccess";
 import RegisterFailure from "./pages/RegisterFailure";
+
+// 냉장고 페이지 추가
+import FridgePage from "./pages/FridgePage";
 
 const AppRoutes = () => {
   const { isAuthenticated } = useAuth();
@@ -24,7 +28,13 @@ const AppRoutes = () => {
         element={isAuthenticated ? <Home /> : <Navigate to="/login" />}
       />
 
-      {/* 이미 로그인된 상태라면 /login 접근 시 홈으로 리다이렉트 */}
+      {/* /fridge 경로 추가 (인증 필요) */}
+      <Route
+        path="/fridge"
+        element={isAuthenticated ? <FridgePage /> : <Navigate to="/login" />}
+      />
+
+      {/* 로그인 및 회원가입 라우트 */}
       <Route
         path="/login"
         element={isAuthenticated ? <Navigate to="/" /> : <Login />}
@@ -36,7 +46,7 @@ const AppRoutes = () => {
       <Route path="/register-success" element={<RegisterSuccess />} />
       <Route path="/register-failure" element={<RegisterFailure />} />
 
-      {/* 기타 없는 페이지 → / 로 */}
+      {/* 기타 없는 페이지 → 홈으로 리다이렉트 */}
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
